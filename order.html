@@ -29,13 +29,43 @@
         <input type="text" id="note">
       </label>
       <button class="btn" type="submit">Send order on Messenger</button>
-      <p id="copied" class="copied" hidden>Order message copied! Paste it in the Messenger chat and tap send.</p>
+      <p id="copied" class="copied" hidden>Messenger is opening. If your order message is not in the chat box, just paste it and tap send. It is already copied.</p>
     </form>
   </section>
   <footer>
     <p><a class="fb-link" href="#" target="_blank" rel="noopener">Find us on Facebook</a></p>
     <p id="year"></p>
   </footer>
+  <script>
+    // Runs before script.js and takes over the order form submit
+    document.getElementById("orderForm").addEventListener("submit", async function (event) {
+      event.preventDefault();
+      event.stopImmediatePropagation(); // stops the older handler in script.js
+
+      const name = document.getElementById("name").value;
+      const cake = document.getElementById("cake").value;
+      const date = document.getElementById("date").value;
+      const note = document.getElementById("note").value;
+
+      let message = `Hi! I'd like to order a ${cake} for ${date}. My name is ${name}.`;
+      if (note) {
+        message += ` Message on the cake: "${note}".`;
+      }
+
+      // Copy as a backup, in case Messenger doesn't fill in the text
+      const box = document.getElementById("copied");
+      try {
+        await navigator.clipboard.writeText(message);
+      } catch (e) {
+        box.textContent = message; // show it so it can be copied by hand
+      }
+      box.hidden = false;
+
+      // Open Messenger with the message already attached to the link
+      const url = "https://m.me/" + FACEBOOK_USERNAME + "?text=" + encodeURIComponent(message);
+      window.open(url, "_blank");
+    });
+  </script>
   <script src="script.js"></script>
 </body>
 </html>
