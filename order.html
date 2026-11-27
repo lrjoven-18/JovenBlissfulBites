@@ -16,24 +16,24 @@
       </label>
       <label>Cake
         <select id="cake">
-          <option>Chocolate Cake</option>
-          <option>Vanilla Birthday Cake</option>
-          <option>Red Velvet</option>
-          <option>Cupcakes (box of 6)</option>
+          <option>Two Tier Cake</option>
+          <option>Three Tier Cake</option>
+          <option>Regulare Cake</option>
+          <option>Cupcakes (box of 12)</option>
         </select>
       </label>
       <label>Date needed
         <input type="date" id="date" required>
       </label>
-      <label>Message on the cake (optional)
-        <input type="text" id="note">
+      <label>Theme
+        <input type="text" id="note" required>
       </label>
       <button class="btn" type="submit">Send order on Messenger</button>
       <p id="copied" class="copied" hidden>Messenger is opening. If your order message is not in the chat box, just paste it and tap send. It is already copied.</p>
     </form>
   </section>
   <footer>
-    <p><a class="fb-link" href="#" target="_blank" rel="noopener">Find us on Facebook</a></p>
+    <p><a class="fb-link" href="#" target="https://www.facebook.com/profile.php?id=100083236957205&mibextid=ZbWKwL" rel="noopener">Find us on Facebook</a></p>
     <p id="year"></p>
   </footer>
   <script>
@@ -49,7 +49,7 @@
 
       let message = `Hi! I'd like to order a ${cake} for ${date}. My name is ${name}.`;
       if (note) {
-        message += ` Message on the cake: "${note}".`;
+        message = ` Theme: "${note}".`;
       }
 
       // Copy as a backup, in case Messenger doesn't fill in the text
@@ -62,8 +62,8 @@
       box.hidden = false;
 
       // Open Messenger with the message already attached to the link
-      const url = "https://m.me/" + FACEBOOK_USERNAME + "?text=" + encodeURIComponent(message);
-      window.open(url, "_blank");
+      const url = "https://m.me/109958375091707" + 109958375091707 + "?text=" + encodeURIComponent(message);
+      window.open(url, "https://m.me/109958375091707");
     });
   </script>
   <script src="script.js"></script>
